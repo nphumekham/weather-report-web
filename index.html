@@ -5,7 +5,6 @@
     <title>Midterm</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- <link href="reset.css" rel="stylesheet" type="text/css"> -->
     <link href="style.css" rel="stylesheet" type="text/css">
 
     <meta name="description" content="">
@@ -42,71 +41,98 @@
 
 <body>
     <header>
-        
+
         <div id="home" class="header-hero bg_cover" style="background-image: url(assets/css/banner-bg.svg)">
-        <nav class="navbar navbar-expand-lg navbar-light navbar-float">
-            <div class="container">
-                <a href="#" class="navbar-brand">ITS<span class="text-primary">344</span> </a>
-                <h1>Weather Report</h1>
-            </div>
-        </nav>
+            <nav class="navbar navbar-expand-lg navbar-light navbar-float">
+                <div class="container">
+                    <a href="#" class="navbar-brand">ITS<span class="text-primary">344</span> - Midterm Project</a>
+                    <h1>Weather Report</h1>
+                </div>
+            </nav>
         </div>
     </header>
 
     <main>
         <div class="container">
             <div class="subscribe-area wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
-                <div class="row" id="location">
-                    <!-- <h3>Weather Report</h3> -->
-                </div>
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                        <br>
-                        <canvas id="myChart" style="width:100%;max-width:900px;align-content: center;"></canvas>
+                <div class="row" id="location"></div>
+                <div class="row" id="frequency"></div>
+                <div class="row align-items-center">
+                    <div class="col-lg-2">
+                        <div class="row text-center">
+                            <div class="container ">
+                                <a class="logo" >
+                                    <img src="assets/images/blue-sq.png" alt="logo" width="50" height="50">
+                                    < 30 degree</a><br><br>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="container ">
+                                <a class="logo">
+                                    <img src="assets/images/green-sq.png" alt="logo" width="50" height="50">
+                                    < 35 degree</a><br><br>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="container ">
+                                <a class="logo" >
+                                    <img src="assets/images/yellow-sq.png" alt="logo" width="50" height="50">
+                                    < 40 degree</a><br><br>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="container ">
+                                <a class="logo" >
+                                    <img src="assets/images/red-sq.png" alt="logo" width="50" height="50">
+                                    > 40 degree</a><br><br>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-2"></div>
+                    <div class="col-lg-9">
+                        <br>
+                        <canvas id="myChart" style="width:100%;max-width:1000px;align-content: center;"></canvas>
+                    </div>
+                    <div class="col-lg-1"></div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="single-services text-center mt-0 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="single-services text-center mt-0">
                             <div class="services-content m-1">
                                 <h4 class="services-title"><a href="#">Choose Location</a></h4><br>
-                                    <button class="green" onclick="bkkChart()">BKK</button>
-                                    <button class="green" onclick="cnxChart()">CNX</button><br>
+                                <button class="clicked" onclick="bkkChart()">BKK</button>
+                                <button class="notclicked" onclick="cnxChart()">CNX</button><br>
                             </div>
-                        </div> 
+                        </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="single-services text-center mt-0 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="single-services text-center mt-0">
                             <div class="services-content m-1">
                                 <h4 class="services-title"><a href="#">Choose Frequency</a></h4><br>
-                                <button class="green" onclick="dailyChart()">Daily</button>
-                                <button class="green" onclick="threeHoursChart()">3 Hours</button><br>
+                                <button class="clicked" onclick="dailyChart()">Daily</button>
+                                <button class="notclicked" onclick="threeHoursChart()">3 Hours</button><br>
                             </div>
-                        </div> 
+                        </div>
                     </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
                 </div>
-
             </div>
 
-           
-
         </div>
-        
+
+
     </main>
     <footer id="footer" class="footer-area pt-0">
-        <div class="row testimonial-active wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.8s">
+        <div class="row testimonial-active">
             <div class="col-lg-12">
                 <div class="single-testimonial">
                     <div class="testimonial-author d-flex align-items-center">
                         <div class="author-content media-body">
-                            <p class="text">Made by</p>
+                            <p class="text">Made by 6122780925</p>
                             <h6 class="holder-name">Nutchaya Phumekham</h6>
-                            
                         </div>
                     </div>
-                </div> <!-- single testimonial -->
+                </div>
             </div>
         </div>
     </footer>

@@ -26,14 +26,6 @@
     11.FOOTER
 
 -----------------------------------------------------------------------------------*/
-
-.active {
-  background-color: #7FFF00;  
-}
-
-.inactive {
-  background-color: #FFFFFF;
-}
 /*===========================
      01.COMMON css 
 ===========================*/
@@ -42,9 +34,9 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: normal;
   font-style: normal;
-  color: #6A6972;
+  color: #000000;
   overflow-x: hidden; 
-background-color: #c8338f;}
+background-color: #FFA0AC;}
 
 
 header .container, main .container, footer .container {
@@ -75,7 +67,9 @@ a:hover {
 i,
 span,
 a {
-  display: inline-block; }
+  color: #af1d90;
+  display: inline-block; 
+}
 
 audio,
 canvas,
@@ -138,7 +132,7 @@ p {
   outline: 0; }
 
 /*===== All Button Style =====*/
-.highlight{
+.clicked{
   display: inline-block;
   font-weight: 500;
   text-align: center;
@@ -166,7 +160,7 @@ p {
   background: linear-gradient(to right, #c83347 0%, #e481db 50%, #c83347 100%);
   background-size: 200%; 
 }
-.green{
+.notclicked{
     display: inline-block;
     font-weight: 500;
     text-align: center;
@@ -1125,15 +1119,15 @@ p {
   .counter-wrapper .counter-content .text {
     margin-top: 35px; }
   .counter-wrapper .single-counter {
-    max-width: 155px;
-    height: 120px;
+    max-width: 55px;
+    height: 70px;
     border-radius: 60px;
     position: relative;
     z-index: 5;
     margin-top: 60px; }
     @media (max-width: 767px) {
       .counter-wrapper .single-counter {
-        max-width: 100px;
+        max-width: 55px;
         height: 80px; } }
     @media only screen and (min-width: 576px) and (max-width: 767px) {
       .counter-wrapper .single-counter {
@@ -1142,8 +1136,8 @@ p {
     .counter-wrapper .single-counter::before {
       position: absolute;
       content: '';
-      width: 155px;
-      height: 120px;
+      width: 55px;
+      height: 70px;
       border-radius: 60px;
       top: 0;
       left: 0;
@@ -1272,8 +1266,9 @@ p {
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s; }
-  @media (max-width: 767px) {
+  transition: all 0.3s ease-out 0s; 
+  max-width: 1300px;}
+  @media (max-width: 1300px) {
     .single-testimonial {
       padding: 5px 5px 5px; } }
   .single-testimonial .testimonial-review .quota i {
@@ -1383,7 +1378,7 @@ p {
   -moz-box-shadow: 0px 0px 18px 0px rgba(50, 77, 215, 0.14);
   box-shadow: 0px 0px 18px 0px rgba(50, 77, 215, 0.14);
   border-radius: 10px;
-  background-color: rgb(248, 244, 244); }
+  background-color: #ffff; }
   @media (max-width: 767px) {
     .subscribe-area {
       padding: 10px 30px 30px; } }

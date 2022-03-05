@@ -1,38 +1,53 @@
+//url paramerters
 var apiKey = "G9rl(3Z6evWODYwJhHWHNglpVEhRF(m3UD5yVmBUr7zgFiOCiLPbUw1Z8XG5V3DntWUW5i6X2L0mw)eKVOBOad0=====2"
-
 var latBKK = 13.7563;
 var lonBKK = 100.5018;
-
 var latCNX = 18.7677;
 var lonCNX = 98.9640;
-
 var freqDaily = "daily";
 var freq3Hours = "3Hours";
 var interval = 7;
-
 var lat = latBKK;
 var lon = lonBKK;
 var frequency = freqDaily;
-
-// var locationName = "";
+//charts info
 var tempForYAxis = [];
 var iconForXAxis = [];
 var countBars = 7;
-
-var headerLocation       = document.getElementById("location");
-
-
+//header info
+var headerLocation = document.getElementById("location");
+var headerFrequency = document.getElementById("frequency");
+//button colors 
 var buttons = document.querySelectorAll("button");
 function changeButtons(index) {
-	console.log("here is "+buttons[2]);
-	console.log('test')
-	buttons.forEach(function(btn){
-	  btn.classList.remove('highlight');
-	  btn.classList.add('green');
-	})
-	buttons[index].classList.remove('green');
-	buttons[index].classList.add('highlight');
+	if(countBars==7){
+		buttons[2].classList.remove('notclicked');
+		buttons[2].classList.add('clicked');
+		buttons[3].classList.remove('clicked');
+		buttons[3].classList.add('notclicked');
+	}
+	 if(countBars==8){
+		buttons[3].classList.remove('notclicked');
+		buttons[3].classList.add('clicked');
+		buttons[2].classList.remove('clicked');
+		buttons[2].classList.add('notclicked');
+	}
+	 if(lat==latBKK){
+		buttons[0].classList.remove('notclicked');
+		buttons[0].classList.add('clicked');
+		buttons[1].classList.remove('clicked');
+		buttons[1].classList.add('notclicked');
+	}
+	 if(lat==latCNX){
+		console.log("in color cnx");
+		console.log(buttons[1].classList);
+		buttons[1].classList.remove('notclicked');
+		buttons[1].classList.add('clicked');
+		buttons[0].classList.remove('clicked');
+		buttons[0].classList.add('notclicked');
+	}
 }
+//change paramerters each push
 function bkkChart() {
 	console.log("bkk chart");
 	tempForYAxis = [];
@@ -48,7 +63,6 @@ function cnxChart() {
 	iconForXAxis = [];
 	lat = latCNX;
 	lon = lonCNX;
-	
 	changeButtons(1);
 	buildJSON(countBars);
 }
@@ -71,6 +85,7 @@ function threeHoursChart() {
 	changeButtons(3);
 	buildJSON(countBars);
 }
+//build JSON for chart
 function buildJSON(countBars) {
 	console.log("in render chart");
 	$.ajax({
@@ -90,15 +105,24 @@ function buildJSON(countBars) {
 			console.log(results);
 			var weatherResults = results.results.weather;
 			var locationName = results.results.locationName;
-			for(var i=0; i<countBars; i++){
+			for (var i = 0; i < countBars; i++) {
 				tempForYAxis.push(weatherResults[i].temperature.temp);
 				iconForXAxis.push(weatherResults[i].icon);
 			}
-			console.log("prepare axis array");
-			console.log(tempForYAxis);
-			console.log(iconForXAxis);
-			headerLocation.innerHTML = "<h2>"+locationName+"</h2>";
-			renderChart(iconForXAxis, tempForYAxis);
+			headerLocation.innerHTML = "<h2>" + locationName + "</h2>";
+			headerFrequency.innerHTML = "<h6>Frequency: " + frequency + "</h6>";
+			var barColors = [];
+			var green = "#06A77D";
+			var yellow = "#F1A208";
+			var red = "#F93943";
+			var blue = "#7EB2DD";
+			for (var i = 0; i < countBars; i++) {
+				if (tempForYAxis[i] < 30) { barColors.push(blue); }
+				else if (tempForYAxis[i] > 30 && tempForYAxis[i] < 35) { barColors.push(green); }
+				else if (tempForYAxis[i] > 35 && tempForYAxis[i] < 40) { barColors.push(yellow); }
+				else { barColors.push(red); }
+			}
+			renderChart(iconForXAxis, tempForYAxis, barColors);
 		},
 		error: function (response) {
 			console.log("this is error");
@@ -106,68 +130,57 @@ function buildJSON(countBars) {
 		}
 	});
 }
-function renderChart(xAxis, yAxis) {
-	console.log("in render chart");
-	console.log(countBars);
-	console.log(xAxis);
-	var barColors = [];
-	if(countBars==7){
-		barColors = ["#F1A208", "#F1A208", "#F1A208", "#F1A208", "#F1A208", "#F1A208", "#F1A208"];
-	}
-	else{barColors = ["#F1A208", "#F1A208", "#F1A208", "#F1A208", "#F1A208", "#F1A208", "#F1A208", "#F1A208"];}
-	
+//render chart
+function renderChart(icon, temperature, barColors) {
 	new Chart(document.getElementById("myChart"), {
 		type: "bar",
 		plugins: [{
-		  afterDraw: chart => {      
-			var ctx = chart.chart.ctx; 
-			var xAxis = chart.scales['x-axis-0'];
-			var yAxis = chart.scales['y-axis-0'];
-			xAxis.ticks.forEach((value, index) => {  
-			  var x = xAxis.getPixelForTick(index);      
-			  var image = new Image();
-			  image.src = xAxis[index],
-			  ctx.drawImage(image, x + 30, yAxis.bottom + 5);
-			});      
-		  }
+			afterDraw: chart => {
+				var ctx = chart.chart.ctx;
+				var xAxis = chart.scales['x-axis-0'];
+				var yAxis = chart.scales['y-axis-0'];
+				xAxis.ticks.forEach((value, index) => {
+					var x = xAxis.getPixelForTick(index);
+					var image = new Image();
+					image.src = icon[index],
+						ctx.drawImage(image, x + 30, yAxis.bottom + 5);
+				});
+			}
 		}],
 		data: {
-		  labels: xAxis,
-		  datasets: [{
-			label: "Temperature:",
-			data: yAxis,
-			backgroundColor: barColors
-		  }]
+			labels: icon,
+			datasets: [{
+				label: "Temperature:",
+				data: temperature,
+				backgroundColor: barColors
+			}]
 		},
 		options: {
-		  responsive: true,
-		  layout: {
-			padding: {
-			  bottom: 50
-			}
-		  },
-		  legend: {
-			display: false
-		  },    
-		  scales: {
-			yAxes: [{ 
-			  ticks: {
-				beginAtZero: true
-			  }
-			}],
-			xAxes: [{
-			  ticks: {
+			responsive: true,
+			layout: {
+				padding: {
+					bottom: 50
+				}
+			},
+			legend: {
 				display: false
-			  }   
-			}],
-		  }
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}],
+				xAxes: [{
+					ticks: {
+						display: false
+					}
+				}],
+			}
 		}
-	  });
+	});
 }
-
-
-
-
+//main
 var main = function () {
 	"use strict";
 	buildJSON(countBars);
