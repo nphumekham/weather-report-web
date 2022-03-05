@@ -109,7 +109,7 @@ function buildJSON(countBars) {
 				tempForYAxis.push(weatherResults[i].temperature.temp);
 				iconForXAxis.push(weatherResults[i].icon);
 			}
-			headerLocation.innerHTML = "<h2>" + locationName + "</h2>";
+			headerLocation.innerHTML = "<h3>" + locationName + "</h3>";
 			headerFrequency.innerHTML = "<h6>Frequency: " + frequency + "</h6>";
 			var barColors = [];
 			var green = "#06A77D";
