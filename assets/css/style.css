@@ -6,7 +6,25 @@ body {
   color: #000000;
   overflow-x: hidden; 
 background-color: #FFA0AC;}
-
+.modal {
+  display:    none;
+  position:   fixed;
+  z-index:    1000;
+  top:        0;
+  left:       0;
+  height:     100%;
+  width:      100%;
+  background: rgba( 255, 255, 255, .8 ) 
+              url('http://i.stack.imgur.com/FhHRx.gif') 
+              50% 50% 
+              no-repeat;
+}
+body.loading .modal {
+  overflow: hidden;   
+}
+body.loading .modal {
+  display: block;
+}
 header .container, main .container, footer .container {
   max-width: 1300px;
   margin: auto;
@@ -38,7 +56,6 @@ a {
 img
 {
   vertical-align: middle; }
-
 h1,
 h2,
 h3,
@@ -97,11 +114,6 @@ p {
   color: #fff;
   cursor: pointer;
   z-index: 5;
-  -webkit-transition: all 0.4s ease-out 0s;
-  -moz-transition: all 0.4s ease-out 0s;
-  -ms-transition: all 0.4s ease-out 0s;
-  -o-transition: all 0.4s ease-out 0s;
-  transition: all 0.4s ease-out 0s;
   background: -webkit-linear-gradient(left, #c83347 0%, #e481db 50%, #c83347 100%);
   background: -o-linear-gradient(left, #c83347 0%, #e481db 50%, #c83347 100%);
   background: linear-gradient(to right, #c83347 0%, #e481db 50%, #c83347 100%);
@@ -125,11 +137,6 @@ p {
     color: #fff;
     cursor: pointer;
     z-index: 5;
-    -webkit-transition: all 0.4s ease-out 0s;
-    -moz-transition: all 0.4s ease-out 0s;
-    -ms-transition: all 0.4s ease-out 0s;
-    -o-transition: all 0.4s ease-out 0s;
-    transition: all 0.4s ease-out 0s;
     background: -webkit-linear-gradient(left, #33c8c1 0%, #119bd2 50%, #33c8c1 100%);
     background: -o-linear-gradient(left, #33c8c1 0%, #119bd2 50%, #33c8c1 100%);
     background: linear-gradient(to right, #33c8c1 0%, #119bd2 50%, #33c8c1 100%);
